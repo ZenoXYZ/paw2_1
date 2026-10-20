@@ -32,7 +32,22 @@
   })
 
   cw2.addEventListener("click", function () {
-    //TODO
+    answer.innerHTML = 'Loading...'
+    setTimeout(() => {
+      fetch('https://jsonplaceholder.typicode.com/posts')
+      .then(response => response.json())
+      .then(array => {
+            let html = '<ol>';
+            array.forEach(element => {
+                html += '<li>' + element.title +
+                    '<ul><li>' + element.body + '</li></ul>' +
+                    '</li>';
+            });
+
+            html += '</ol>';
+            answer.innerHTML = html;
+      })
+    }, 1234);
   })
 
   cw3.addEventListener("click", function () {
