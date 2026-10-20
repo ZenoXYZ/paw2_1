@@ -3,6 +3,7 @@
   const cw1 = document.getElementById('cw1')
   const cw2 = document.getElementById('cw2')
   const cw3 = document.getElementById('cw3')
+  let select = document.getElementById('select_cw3')
   const answer = document.getElementById('answer')
 
   example.addEventListener("click", function () {
@@ -51,7 +52,12 @@
   })
 
   cw3.addEventListener("click", function () {
-    //TODO
+    let selectValue = select.value;
+    fetch(`https://jsonplaceholder.typicode.com/posts/${selectValue}`)
+      .then(response => response.json())
+      .then(array => {
+            answer.innerHTML = `<ul><li>${array['title']}<ul><li>${array['body']}</li></ul></li></ul>`;
+      })
   })
 
 })();
